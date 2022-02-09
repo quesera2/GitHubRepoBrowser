@@ -14,6 +14,7 @@
 		FBD6FC4A27B3A093005E3EA4 /* GitHubRepoBrowserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC4927B3A093005E3EA4 /* GitHubRepoBrowserTests.swift */; };
 		FBD6FC5427B3A093005E3EA4 /* GitHubRepoBrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC5327B3A093005E3EA4 /* GitHubRepoBrowserUITests.swift */; };
 		FBD6FC5627B3A093005E3EA4 /* GitHubRepoBrowserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC5527B3A093005E3EA4 /* GitHubRepoBrowserUITestsLaunchTests.swift */; };
+		FBD6FC6427B3A283005E3EA4 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = FBD6FC6327B3A283005E3EA4 /* Swinject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD6FC6427B3A283005E3EA4 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +145,9 @@
 			dependencies = (
 			);
 			name = GitHubRepoBrowser;
+			packageProductDependencies = (
+				FBD6FC6327B3A283005E3EA4 /* Swinject */,
+			);
 			productName = GitHubRepoBrowser;
 			productReference = FBD6FC3527B3A092005E3EA4 /* GitHubRepoBrowser.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +220,9 @@
 				Base,
 			);
 			mainGroup = FBD6FC2C27B3A092005E3EA4;
+			packageReferences = (
+				FBD6FC6227B3A283005E3EA4 /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			productRefGroup = FBD6FC3627B3A092005E3EA4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -579,6 +587,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FBD6FC6227B3A283005E3EA4 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FBD6FC6327B3A283005E3EA4 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBD6FC6227B3A283005E3EA4 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FBD6FC2D27B3A092005E3EA4 /* Project object */;
 }
