@@ -19,7 +19,7 @@ struct GitHubRepository: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: CodingKeys.id)
         self.name = try container.decode(String.self, forKey: CodingKeys.name)
-        self.description = try container.decode(String.self, forKey: CodingKeys.description)
+        self.description = try container.decode(String?.self, forKey: CodingKeys.description) ?? ""
         let htmlURLString = try container.decode(String.self, forKey: CodingKeys.htmlURL)
         guard
             let htmlURL = URL(string: htmlURLString)

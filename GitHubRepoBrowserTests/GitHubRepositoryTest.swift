@@ -81,7 +81,7 @@ fileprivate let testJson = """
       "site_admin": false
     },
     "html_url": "https://github.com/quesera2/camera1",
-    "description": "いまさらCamera1",
+    "description": null,
     "fork": false,
     "url": "https://api.github.com/repos/quesera2/camera1",
     "forks_url": "https://api.github.com/repos/quesera2/camera1/forks",
