@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB7C7F0F27B49B6F00EBDADF /* GitHubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7C7F0E27B49B6F00EBDADF /* GitHubRepository.swift */; };
+		FB7C7F1127B49F5200EBDADF /* GitHubRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7C7F1027B49F5200EBDADF /* GitHubRepositoryTest.swift */; };
 		FBD6FC3927B3A092005E3EA4 /* GitHubRepoBrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC3827B3A092005E3EA4 /* GitHubRepoBrowserApp.swift */; };
 		FBD6FC3B27B3A092005E3EA4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC3A27B3A092005E3EA4 /* ContentView.swift */; };
 		FBD6FC3D27B3A093005E3EA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD6FC3C27B3A093005E3EA4 /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB7C7F0E27B49B6F00EBDADF /* GitHubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepository.swift; sourceTree = "<group>"; };
+		FB7C7F1027B49F5200EBDADF /* GitHubRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepositoryTest.swift; sourceTree = "<group>"; };
 		FBD6FC3527B3A092005E3EA4 /* GitHubRepoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRepoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD6FC3827B3A092005E3EA4 /* GitHubRepoBrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepoBrowserApp.swift; sourceTree = "<group>"; };
 		FBD6FC3A27B3A092005E3EA4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB7C7F0D27B49B5E00EBDADF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FB7C7F0E27B49B6F00EBDADF /* GitHubRepository.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FBD6FC2C27B3A092005E3EA4 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +108,7 @@
 		FBD6FC3727B3A092005E3EA4 /* GitHubRepoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				FB7C7F0D27B49B5E00EBDADF /* Model */,
 				FBD6FC3827B3A092005E3EA4 /* GitHubRepoBrowserApp.swift */,
 				FBD6FC3A27B3A092005E3EA4 /* ContentView.swift */,
 				FBD6FC3C27B3A093005E3EA4 /* Assets.xcassets */,
@@ -116,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				FBD6FC4927B3A093005E3EA4 /* GitHubRepoBrowserTests.swift */,
+				FB7C7F1027B49F5200EBDADF /* GitHubRepositoryTest.swift */,
 			);
 			path = GitHubRepoBrowserTests;
 			sourceTree = "<group>";
@@ -265,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB7C7F0F27B49B6F00EBDADF /* GitHubRepository.swift in Sources */,
 				FBD6FC3B27B3A092005E3EA4 /* ContentView.swift in Sources */,
 				FBD6FC3927B3A092005E3EA4 /* GitHubRepoBrowserApp.swift in Sources */,
 			);
@@ -274,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB7C7F1127B49F5200EBDADF /* GitHubRepositoryTest.swift in Sources */,
 				FBD6FC4A27B3A093005E3EA4 /* GitHubRepoBrowserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
