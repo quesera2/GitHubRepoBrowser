@@ -8,13 +8,15 @@
 import Foundation
 
 /// GitHubのリポジトリ情報を保持する
-struct GitHubRepository: Decodable {
+struct GitHubRepository {
     let id: Int
     let name: String
     let htmlURL: URL
     let description: String
     let createdAt, updatedAt: Date
+}
 
+extension GitHubRepository: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: CodingKeys.id)
@@ -43,3 +45,5 @@ struct GitHubRepository: Decodable {
         case updatedAt = "updated_at"
     }
 }
+
+extension GitHubRepository: Identifiable { }
