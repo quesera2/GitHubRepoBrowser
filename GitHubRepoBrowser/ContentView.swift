@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = ContentViewModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List(viewModel.repositories) { item in
+                Text(item.name)
+            }
+            .navigationTitle("リポジトリ一覧")
+            .listStyle(.plain)
+        }
+        .task {
+            await viewModel.fetchRepository()
+        }
     }
 }
 
