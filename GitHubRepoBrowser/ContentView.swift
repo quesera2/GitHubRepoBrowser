@@ -12,8 +12,10 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.repositories) { item in
-                Text(item.name)
+            List {
+                ForEach(viewModel.repositories) { item in
+                    Text(item.name)
+                }
             }
             .navigationTitle("リポジトリ一覧")
             .listStyle(.plain)
