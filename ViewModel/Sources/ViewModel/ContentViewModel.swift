@@ -10,16 +10,18 @@ import Model
 
 @MainActor
 public class ContentViewModel: ObservableObject {
+    
     @Published public private(set) var repositories: [GitHubRepository] = []
     
-    public init() {
-        
+    private let apiClient: GitHubAPIClientProtocol
+    
+    public init(apiClient: GitHubAPIClientProtocol = GitHubAPIClient()) {
+        self.apiClient = apiClient
     }
     
     public func fetchRepository() async {
-        let api = GitHubAPI()
         do {
-            let result = try await api.fetchRepositories(userName: "quesera2")
+            let result = try await apiClient.fetchRepositories(userName: "quesera2")
             repositories = result
         } catch GitHubAPIError.InvalidURL {
             print("error handling invalid url")

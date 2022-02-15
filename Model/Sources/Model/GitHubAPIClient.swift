@@ -13,7 +13,7 @@ public enum GitHubAPIError: Error {
     case JsonParseError
 }
 
-public final class GitHubAPI {
+public final class GitHubAPIClient: GitHubAPIClientProtocol {
     
     private let urlSession: URLSession
     
