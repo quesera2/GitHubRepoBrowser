@@ -16,6 +16,7 @@
 		FBD6FC5427B3A093005E3EA4 /* GitHubRepoBrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC5327B3A093005E3EA4 /* GitHubRepoBrowserUITests.swift */; };
 		FBD6FC5627B3A093005E3EA4 /* GitHubRepoBrowserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC5527B3A093005E3EA4 /* GitHubRepoBrowserUITestsLaunchTests.swift */; };
 		FBD6FC6427B3A283005E3EA4 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = FBD6FC6327B3A283005E3EA4 /* Swinject */; };
+		FBEB40EF27BB6A5900DA9642 /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = FBEB40EE27BB6A5900DA9642 /* SwinjectAutoregistration */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 				FB45334427BB2DA00053A4F0 /* Model in Frameworks */,
 				FBD6FC6427B3A283005E3EA4 /* Swinject in Frameworks */,
 				FB45334627BB37E80053A4F0 /* ViewModel in Frameworks */,
+				FBEB40EF27BB6A5900DA9642 /* SwinjectAutoregistration in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +136,7 @@
 				FBD6FC6327B3A283005E3EA4 /* Swinject */,
 				FB45334327BB2DA00053A4F0 /* Model */,
 				FB45334527BB37E80053A4F0 /* ViewModel */,
+				FBEB40EE27BB6A5900DA9642 /* SwinjectAutoregistration */,
 			);
 			productName = GitHubRepoBrowser;
 			productReference = FBD6FC3527B3A092005E3EA4 /* GitHubRepoBrowser.app */;
@@ -187,6 +190,7 @@
 			mainGroup = FBD6FC2C27B3A092005E3EA4;
 			packageReferences = (
 				FBD6FC6227B3A283005E3EA4 /* XCRemoteSwiftPackageReference "Swinject" */,
+				FBEB40ED27BB6A5900DA9642 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
 			);
 			productRefGroup = FBD6FC3627B3A092005E3EA4 /* Products */;
 			projectDirPath = "";
@@ -494,6 +498,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		FBEB40ED27BB6A5900DA9642 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/SwinjectAutoregistration";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -509,6 +521,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FBD6FC6227B3A283005E3EA4 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		FBEB40EE27BB6A5900DA9642 /* SwinjectAutoregistration */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBEB40ED27BB6A5900DA9642 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */;
+			productName = SwinjectAutoregistration;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
