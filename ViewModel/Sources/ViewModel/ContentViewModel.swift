@@ -26,7 +26,7 @@ public class ContentViewModel: ObservableObject {
     
     /// 読込中表示
     public var showProgress: Bool {
-        switch(self.state) {
+        switch self.state {
         case .Initial: return true
         case .Loaded(_), .Failed(_): return false
         }
@@ -34,7 +34,7 @@ public class ContentViewModel: ObservableObject {
     
     /// 読み込んだリポジトリ
     public var repositories: [GitHubRepository] {
-        switch(self.state) {
+        switch self.state {
         case .Initial, .Failed(_): return []
         case .Loaded(let newData): return newData
         }
