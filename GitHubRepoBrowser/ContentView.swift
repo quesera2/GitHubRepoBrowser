@@ -19,6 +19,9 @@ struct ContentView: View {
             }
             .navigationTitle("リポジトリ一覧")
             .listStyle(.plain)
+            .refreshable {
+                await viewModel.fetchRepository()
+            }
         }
         .task {
             await viewModel.fetchRepository()
