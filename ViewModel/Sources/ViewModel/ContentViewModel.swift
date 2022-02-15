@@ -14,9 +14,9 @@ enum ContentViewModelState {
     case Failed(ContentViewModelError)
 }
 
-enum ContentViewModelError: Error {
+public enum ContentViewModelError: Error {
     case RequestError
-    case LoadingError
+    case ResponseError
 }
 
 @MainActor
@@ -40,6 +40,14 @@ public class ContentViewModel: ObservableObject {
         }
     }
     
+    /// 発生したエラー
+    public var occursError: ContentViewModelError? {
+        switch self.state {
+        case .Initial, .Loaded(_): return nil
+        case .Failed(let error):  return error
+        }
+    }
+    
     private let apiClient: GitHubAPIClientProtocol
     
     public init(apiClient: GitHubAPIClientProtocol = GitHubAPIClient()) {
@@ -50,12 +58,13 @@ public class ContentViewModel: ObservableObject {
         do {
             let result = try await apiClient.fetchRepositories(userName: "quesera2")
             self.state = .Loaded(result)
-        } catch GitHubAPIError.InvalidURL {
-            print("error handling invalid url")
-        } catch GitHubAPIError.ConnectionError {
-            print("error handling connection")
-        } catch GitHubAPIError.JsonParseError {
-            print("error handling json parse")
+        } catch let error as GitHubAPIError {
+            switch error {
+            case .InvalidURL:
+                self.state = .Failed(.RequestError)
+            case .ConnectionError, .JsonParseError:
+                self.state = .Failed(.ResponseError)
+            }
         } catch {
             fatalError("unknown error")
         }
