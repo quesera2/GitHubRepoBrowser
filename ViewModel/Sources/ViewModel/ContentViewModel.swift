@@ -9,10 +9,14 @@ import Foundation
 import Model
 
 @MainActor
-class ContentViewModel: ObservableObject {
-    @Published private(set) var repositories: [GitHubRepository] = []
+public class ContentViewModel: ObservableObject {
+    @Published public private(set) var repositories: [GitHubRepository] = []
     
-    func fetchRepository() async {
+    public init() {
+        
+    }
+    
+    public func fetchRepository() async {
         let api = GitHubAPI()
         do {
             let result = try await api.fetchRepositories(userName: "quesera2")

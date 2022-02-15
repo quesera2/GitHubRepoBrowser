@@ -5,6 +5,9 @@
       location = "group:GitHubRepoBrowser.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:ViewModel">
+   </FileRef>
+   <FileRef
       location = "group:Model">
    </FileRef>
 </Workspace>

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ViewModel
 
 struct ContentView: View {
     @StateObject private var viewModel = ContentViewModel()
