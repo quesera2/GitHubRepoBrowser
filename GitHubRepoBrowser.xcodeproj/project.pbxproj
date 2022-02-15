@@ -7,28 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB7C7F0F27B49B6F00EBDADF /* GitHubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7C7F0E27B49B6F00EBDADF /* GitHubRepository.swift */; };
-		FB7C7F1127B49F5200EBDADF /* GitHubRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7C7F1027B49F5200EBDADF /* GitHubRepositoryTest.swift */; };
-		FB7C7F1327B4DB9500EBDADF /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7C7F1227B4DB9500EBDADF /* GitHubAPI.swift */; };
-		FBCEC18727BA4BB9007C3C70 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCEC18627BA4BB9007C3C70 /* ContentViewModel.swift */; };
+		FB45334427BB2DA00053A4F0 /* Model in Frameworks */ = {isa = PBXBuildFile; productRef = FB45334327BB2DA00053A4F0 /* Model */; };
+		FB45334627BB37E80053A4F0 /* ViewModel in Frameworks */ = {isa = PBXBuildFile; productRef = FB45334527BB37E80053A4F0 /* ViewModel */; };
 		FBD6FC3927B3A092005E3EA4 /* GitHubRepoBrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC3827B3A092005E3EA4 /* GitHubRepoBrowserApp.swift */; };
 		FBD6FC3B27B3A092005E3EA4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC3A27B3A092005E3EA4 /* ContentView.swift */; };
 		FBD6FC3D27B3A093005E3EA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD6FC3C27B3A093005E3EA4 /* Assets.xcassets */; };
 		FBD6FC4027B3A093005E3EA4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD6FC3F27B3A093005E3EA4 /* Preview Assets.xcassets */; };
-		FBD6FC4A27B3A093005E3EA4 /* GitHubRepoBrowserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC4927B3A093005E3EA4 /* GitHubRepoBrowserTests.swift */; };
 		FBD6FC5427B3A093005E3EA4 /* GitHubRepoBrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC5327B3A093005E3EA4 /* GitHubRepoBrowserUITests.swift */; };
 		FBD6FC5627B3A093005E3EA4 /* GitHubRepoBrowserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC5527B3A093005E3EA4 /* GitHubRepoBrowserUITestsLaunchTests.swift */; };
 		FBD6FC6427B3A283005E3EA4 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = FBD6FC6327B3A283005E3EA4 /* Swinject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FBD6FC4627B3A093005E3EA4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FBD6FC2D27B3A092005E3EA4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FBD6FC3427B3A092005E3EA4;
-			remoteInfo = GitHubRepoBrowser;
-		};
 		FBD6FC5027B3A093005E3EA4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FBD6FC2D27B3A092005E3EA4 /* Project object */;
@@ -39,17 +29,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FB7C7F0E27B49B6F00EBDADF /* GitHubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepository.swift; sourceTree = "<group>"; };
-		FB7C7F1027B49F5200EBDADF /* GitHubRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepositoryTest.swift; sourceTree = "<group>"; };
-		FB7C7F1227B4DB9500EBDADF /* GitHubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
-		FBCEC18627BA4BB9007C3C70 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		FBD6FC3527B3A092005E3EA4 /* GitHubRepoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRepoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD6FC3827B3A092005E3EA4 /* GitHubRepoBrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepoBrowserApp.swift; sourceTree = "<group>"; };
 		FBD6FC3A27B3A092005E3EA4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FBD6FC3C27B3A093005E3EA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBD6FC3F27B3A093005E3EA4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FBD6FC4527B3A093005E3EA4 /* GitHubRepoBrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubRepoBrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FBD6FC4927B3A093005E3EA4 /* GitHubRepoBrowserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepoBrowserTests.swift; sourceTree = "<group>"; };
 		FBD6FC4F27B3A093005E3EA4 /* GitHubRepoBrowserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubRepoBrowserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD6FC5327B3A093005E3EA4 /* GitHubRepoBrowserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepoBrowserUITests.swift; sourceTree = "<group>"; };
 		FBD6FC5527B3A093005E3EA4 /* GitHubRepoBrowserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepoBrowserUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -60,14 +44,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB45334427BB2DA00053A4F0 /* Model in Frameworks */,
 				FBD6FC6427B3A283005E3EA4 /* Swinject in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FBD6FC4227B3A093005E3EA4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				FB45334627BB37E80053A4F0 /* ViewModel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,22 +60,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FB7C7F0D27B49B5E00EBDADF /* Model */ = {
+		FB45334227BB2DA00053A4F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FB7C7F0E27B49B6F00EBDADF /* GitHubRepository.swift */,
-				FB7C7F1227B4DB9500EBDADF /* GitHubAPI.swift */,
 			);
-			path = Model;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		FBD6FC2C27B3A092005E3EA4 = {
 			isa = PBXGroup;
 			children = (
 				FBD6FC3727B3A092005E3EA4 /* GitHubRepoBrowser */,
-				FBD6FC4827B3A093005E3EA4 /* GitHubRepoBrowserTests */,
 				FBD6FC5227B3A093005E3EA4 /* GitHubRepoBrowserUITests */,
 				FBD6FC3627B3A092005E3EA4 /* Products */,
+				FB45334227BB2DA00053A4F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,7 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				FBD6FC3527B3A092005E3EA4 /* GitHubRepoBrowser.app */,
-				FBD6FC4527B3A093005E3EA4 /* GitHubRepoBrowserTests.xctest */,
 				FBD6FC4F27B3A093005E3EA4 /* GitHubRepoBrowserUITests.xctest */,
 			);
 			name = Products;
@@ -113,9 +89,7 @@
 		FBD6FC3727B3A092005E3EA4 /* GitHubRepoBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				FB7C7F0D27B49B5E00EBDADF /* Model */,
 				FBD6FC3827B3A092005E3EA4 /* GitHubRepoBrowserApp.swift */,
-				FBCEC18627BA4BB9007C3C70 /* ContentViewModel.swift */,
 				FBD6FC3A27B3A092005E3EA4 /* ContentView.swift */,
 				FBD6FC3C27B3A093005E3EA4 /* Assets.xcassets */,
 				FBD6FC3E27B3A093005E3EA4 /* Preview Content */,
@@ -129,15 +103,6 @@
 				FBD6FC3F27B3A093005E3EA4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		FBD6FC4827B3A093005E3EA4 /* GitHubRepoBrowserTests */ = {
-			isa = PBXGroup;
-			children = (
-				FBD6FC4927B3A093005E3EA4 /* GitHubRepoBrowserTests.swift */,
-				FB7C7F1027B49F5200EBDADF /* GitHubRepositoryTest.swift */,
-			);
-			path = GitHubRepoBrowserTests;
 			sourceTree = "<group>";
 		};
 		FBD6FC5227B3A093005E3EA4 /* GitHubRepoBrowserUITests */ = {
@@ -167,28 +132,12 @@
 			name = GitHubRepoBrowser;
 			packageProductDependencies = (
 				FBD6FC6327B3A283005E3EA4 /* Swinject */,
+				FB45334327BB2DA00053A4F0 /* Model */,
+				FB45334527BB37E80053A4F0 /* ViewModel */,
 			);
 			productName = GitHubRepoBrowser;
 			productReference = FBD6FC3527B3A092005E3EA4 /* GitHubRepoBrowser.app */;
 			productType = "com.apple.product-type.application";
-		};
-		FBD6FC4427B3A093005E3EA4 /* GitHubRepoBrowserTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FBD6FC5C27B3A093005E3EA4 /* Build configuration list for PBXNativeTarget "GitHubRepoBrowserTests" */;
-			buildPhases = (
-				FBD6FC4127B3A093005E3EA4 /* Sources */,
-				FBD6FC4227B3A093005E3EA4 /* Frameworks */,
-				FBD6FC4327B3A093005E3EA4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FBD6FC4727B3A093005E3EA4 /* PBXTargetDependency */,
-			);
-			name = GitHubRepoBrowserTests;
-			productName = GitHubRepoBrowserTests;
-			productReference = FBD6FC4527B3A093005E3EA4 /* GitHubRepoBrowserTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		FBD6FC4E27B3A093005E3EA4 /* GitHubRepoBrowserUITests */ = {
 			isa = PBXNativeTarget;
@@ -221,10 +170,6 @@
 					FBD6FC3427B3A092005E3EA4 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
-					FBD6FC4427B3A093005E3EA4 = {
-						CreatedOnToolsVersion = 13.2.1;
-						TestTargetID = FBD6FC3427B3A092005E3EA4;
-					};
 					FBD6FC4E27B3A093005E3EA4 = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = FBD6FC3427B3A092005E3EA4;
@@ -248,7 +193,6 @@
 			projectRoot = "";
 			targets = (
 				FBD6FC3427B3A092005E3EA4 /* GitHubRepoBrowser */,
-				FBD6FC4427B3A093005E3EA4 /* GitHubRepoBrowserTests */,
 				FBD6FC4E27B3A093005E3EA4 /* GitHubRepoBrowserUITests */,
 			);
 		};
@@ -261,13 +205,6 @@
 			files = (
 				FBD6FC4027B3A093005E3EA4 /* Preview Assets.xcassets in Resources */,
 				FBD6FC3D27B3A093005E3EA4 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FBD6FC4327B3A093005E3EA4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,20 +222,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB7C7F0F27B49B6F00EBDADF /* GitHubRepository.swift in Sources */,
 				FBD6FC3B27B3A092005E3EA4 /* ContentView.swift in Sources */,
 				FBD6FC3927B3A092005E3EA4 /* GitHubRepoBrowserApp.swift in Sources */,
-				FB7C7F1327B4DB9500EBDADF /* GitHubAPI.swift in Sources */,
-				FBCEC18727BA4BB9007C3C70 /* ContentViewModel.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FBD6FC4127B3A093005E3EA4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FB7C7F1127B49F5200EBDADF /* GitHubRepositoryTest.swift in Sources */,
-				FBD6FC4A27B3A093005E3EA4 /* GitHubRepoBrowserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,11 +239,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		FBD6FC4727B3A093005E3EA4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FBD6FC3427B3A092005E3EA4 /* GitHubRepoBrowser */;
-			targetProxy = FBD6FC4627B3A093005E3EA4 /* PBXContainerItemProxy */;
-		};
 		FBD6FC5127B3A093005E3EA4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FBD6FC3427B3A092005E3EA4 /* GitHubRepoBrowser */;
@@ -499,44 +419,6 @@
 			};
 			name = Release;
 		};
-		FBD6FC5D27B3A093005E3EA4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = que.sera.sera.GitHubRepoBrowserTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHubRepoBrowser.app/GitHubRepoBrowser";
-			};
-			name = Debug;
-		};
-		FBD6FC5E27B3A093005E3EA4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = que.sera.sera.GitHubRepoBrowserTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHubRepoBrowser.app/GitHubRepoBrowser";
-			};
-			name = Release;
-		};
 		FBD6FC6027B3A093005E3EA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -592,15 +474,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FBD6FC5C27B3A093005E3EA4 /* Build configuration list for PBXNativeTarget "GitHubRepoBrowserTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FBD6FC5D27B3A093005E3EA4 /* Debug */,
-				FBD6FC5E27B3A093005E3EA4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		FBD6FC5F27B3A093005E3EA4 /* Build configuration list for PBXNativeTarget "GitHubRepoBrowserUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -624,6 +497,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FB45334327BB2DA00053A4F0 /* Model */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Model;
+		};
+		FB45334527BB37E80053A4F0 /* ViewModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ViewModel;
+		};
 		FBD6FC6327B3A283005E3EA4 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FBD6FC6227B3A283005E3EA4 /* XCRemoteSwiftPackageReference "Swinject" */;
