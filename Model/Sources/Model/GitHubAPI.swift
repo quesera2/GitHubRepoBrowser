@@ -7,15 +7,21 @@
 
 import Foundation
 
-enum GitHubAPIError: Error {
+public enum GitHubAPIError: Error {
     case InvalidURL
     case ConnectionError
     case JsonParseError
 }
 
-final class GitHubAPI {
+public final class GitHubAPI {
     
-    func fetchRepositories(userName: String) async throws -> [GitHubRepository] {
+    private let urlSession: URLSession
+    
+    public init(urlSession: URLSession = URLSession.shared) {
+        self.urlSession = urlSession
+    }
+    
+    public func fetchRepositories(userName: String) async throws -> [GitHubRepository] {
         let url = try buildURL(userName: userName)
         let data = try await connection(url: url)
         let result = try parseResult(data: data)
@@ -36,7 +42,7 @@ final class GitHubAPI {
     
     private func connection(url: URL) async throws -> Data {
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let (data, _) = try await self.urlSession.data(from: url)
             return data
         } catch {
             throw GitHubAPIError.ConnectionError

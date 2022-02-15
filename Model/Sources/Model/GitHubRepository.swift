@@ -8,16 +8,16 @@
 import Foundation
 
 /// GitHubのリポジトリ情報を保持する
-struct GitHubRepository {
-    let id: Int
-    let name: String
-    let htmlURL: URL
-    let description: String
-    let createdAt, updatedAt: Date
+public struct GitHubRepository {
+    public let id: Int
+    public let name: String
+    public let htmlURL: URL
+    public let description: String
+    public let createdAt, updatedAt: Date
 }
 
 extension GitHubRepository: Decodable {
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: CodingKeys.id)
         self.name = try container.decode(String.self, forKey: CodingKeys.name)
