@@ -23,6 +23,11 @@ struct ContentView: View {
             .refreshable {
                 await viewModel.fetchRepository()
             }
+            .overlay {
+                if viewModel.showProgress {
+                    ProgressView()
+                }
+            }
         }
         .task {
             await viewModel.fetchRepository()
