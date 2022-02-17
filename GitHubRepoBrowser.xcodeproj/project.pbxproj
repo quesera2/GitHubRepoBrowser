@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FB45334427BB2DA00053A4F0 /* Model in Frameworks */ = {isa = PBXBuildFile; productRef = FB45334327BB2DA00053A4F0 /* Model */; };
 		FB45334627BB37E80053A4F0 /* ViewModel in Frameworks */ = {isa = PBXBuildFile; productRef = FB45334527BB37E80053A4F0 /* ViewModel */; };
+		FBB229A027BE218500CDB0F7 /* GitHubRepositoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB2299F27BE218500CDB0F7 /* GitHubRepositoryView.swift */; };
 		FBD6FC3927B3A092005E3EA4 /* GitHubRepoBrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC3827B3A092005E3EA4 /* GitHubRepoBrowserApp.swift */; };
 		FBD6FC3B27B3A092005E3EA4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC3A27B3A092005E3EA4 /* ContentView.swift */; };
 		FBD6FC3D27B3A093005E3EA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD6FC3C27B3A093005E3EA4 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FBB2299F27BE218500CDB0F7 /* GitHubRepositoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepositoryView.swift; sourceTree = "<group>"; };
 		FBD6FC3527B3A092005E3EA4 /* GitHubRepoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRepoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD6FC3827B3A092005E3EA4 /* GitHubRepoBrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepoBrowserApp.swift; sourceTree = "<group>"; };
 		FBD6FC3A27B3A092005E3EA4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				FBD6FC3827B3A092005E3EA4 /* GitHubRepoBrowserApp.swift */,
 				FBD6FC3A27B3A092005E3EA4 /* ContentView.swift */,
+				FBB2299F27BE218500CDB0F7 /* GitHubRepositoryView.swift */,
 				FBD6FC3C27B3A093005E3EA4 /* Assets.xcassets */,
 				FBD6FC3E27B3A093005E3EA4 /* Preview Content */,
 			);
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBB229A027BE218500CDB0F7 /* GitHubRepositoryView.swift in Sources */,
 				FBD6FC3B27B3A092005E3EA4 /* ContentView.swift in Sources */,
 				FBD6FC3927B3A092005E3EA4 /* GitHubRepoBrowserApp.swift in Sources */,
 			);

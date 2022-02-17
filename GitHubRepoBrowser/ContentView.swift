@@ -15,7 +15,9 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(viewModel.repositories) { item in
-                    Text(item.name)
+                    GitHubRepositoryView(item: item) {
+                        print($0)
+                    }
                 }
             }
             .navigationTitle("リポジトリ一覧")
