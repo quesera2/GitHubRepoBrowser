@@ -14,6 +14,16 @@ public struct GitHubRepository {
     public let htmlURL: URL
     public let description: String
     public let createdAt, updatedAt: Date
+    
+    public init(id: Int, name: String, htmlURL: URL, description: String,
+                createdAt: Date, updatedAt: Date) {
+        self.id = id
+        self.name = name
+        self.htmlURL = htmlURL
+        self.description = description
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+    }
 }
 
 extension GitHubRepository: Decodable {
