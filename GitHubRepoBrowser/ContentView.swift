@@ -29,6 +29,13 @@ struct ContentView: View {
                 }
             }
         }
+        .alert(
+            isPresented: $viewModel.needShowError,
+            error: viewModel.occursError,
+            actions: {
+                // do nothing.
+            }
+        )
         .task {
             await viewModel.fetchRepository()
         }

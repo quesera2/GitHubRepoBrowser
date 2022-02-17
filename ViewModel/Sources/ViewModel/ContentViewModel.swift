@@ -9,41 +9,59 @@ import Foundation
 import Model
 
 enum ContentViewModelState {
-    case Initial
+    /// 待機状態
+    case Idle
+    /// 読込中状態
+    case Loading
+    /// 読み込み成功
     case Loaded([GitHubRepository])
+    /// 読み込み失敗
     case Failed(ContentViewModelError)
 }
 
-public enum ContentViewModelError: Error {
-    case RequestError
-    case ResponseError
-}
+
 
 @MainActor
 public class ContentViewModel: ObservableObject {
     
-    @Published private var state: ContentViewModelState = .Initial
+    @Published private var state: ContentViewModelState = .Idle
     
     /// 読込中表示
     public var showProgress: Bool {
         switch self.state {
-        case .Initial: return true
-        case .Loaded(_), .Failed(_): return false
+        case .Loading: return true
+        case .Idle, .Loaded(_), .Failed(_): return false
         }
     }
     
     /// 読み込んだリポジトリ
     public var repositories: [GitHubRepository] {
         switch self.state {
-        case .Initial, .Failed(_): return []
+        case .Idle, .Loading, .Failed(_): return []
         case .Loaded(let newData): return newData
+        }
+    }
+    
+    /// エラーアラートを表示するかどうか
+    public var needShowError: Bool {
+        get {
+            switch self.state {
+            case .Idle, .Loading, .Loaded(_): return false
+            case .Failed(_):  return true
+            }
+        }
+        set {
+            // システムがfalseを返却したらエラー表示を終了して待機に戻す
+            if !newValue {
+                self.state = .Idle
+            }
         }
     }
     
     /// 発生したエラー
     public var occursError: ContentViewModelError? {
         switch self.state {
-        case .Initial, .Loaded(_): return nil
+        case .Idle, .Loading, .Loaded(_): return nil
         case .Failed(let error):  return error
         }
     }
@@ -55,6 +73,7 @@ public class ContentViewModel: ObservableObject {
     }
     
     public func fetchRepository() async {
+        self.state = .Loading
         do {
             let result = try await apiClient.fetchRepositories(userName: "quesera2")
             self.state = .Loaded(result)
