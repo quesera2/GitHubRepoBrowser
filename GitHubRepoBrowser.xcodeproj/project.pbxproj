@@ -122,6 +122,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBD6FC5927B3A093005E3EA4 /* Build configuration list for PBXNativeTarget "GitHubRepoBrowser" */;
 			buildPhases = (
+				FB28C78827BF27CC0045C76F /* SwiftLint */,
 				FBD6FC3127B3A092005E3EA4 /* Sources */,
 				FBD6FC3227B3A092005E3EA4 /* Frameworks */,
 				FBD6FC3327B3A092005E3EA4 /* Resources */,
@@ -215,6 +216,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FB28C78827BF27CC0045C76F /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\necho $path\nif which mint >/dev/null; then\n  mint run swiftlint swiftlint\nelse\n  echo \"warning: Mint not installed, download from https://github.com/yonaskolb/Mint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FBD6FC3127B3A092005E3EA4 /* Sources */ = {
