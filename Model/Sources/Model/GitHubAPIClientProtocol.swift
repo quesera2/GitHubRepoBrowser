@@ -8,6 +8,6 @@
 import Foundation
 
 public protocol GitHubAPIClientProtocol {
-    
+
     func fetchRepositories(userName: String) async throws -> [GitHubRepository]
 }
