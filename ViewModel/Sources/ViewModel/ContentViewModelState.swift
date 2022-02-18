@@ -10,11 +10,11 @@ import Model
 
 enum ContentViewModelState {
     /// 待機状態
-    case Idle
+    case idle
     /// 読込中状態
-    case Loading
+    case loading
     /// 読み込み成功
-    case Loaded([GitHubRepository])
+    case loaded([GitHubRepository])
     /// 読み込み失敗
-    case Failed(ContentViewModelError)
+    case failed(ContentViewModelError)
 }

@@ -8,9 +8,9 @@
 import Foundation
 
 public enum GitHubAPIError: Error {
-    case InvalidURL
-    case ConnectionError
-    case JsonParseError
+    case invalidURL
+    case connectionError
+    case jsonParseError
 }
 
 public final class GitHubAPIClient: GitHubAPIClientProtocol {
@@ -34,7 +34,7 @@ public final class GitHubAPIClient: GitHubAPIClientProtocol {
             let userName = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let url = URL(string: "https://api.github.com/users/\(userName)/repos")
         else {
-            throw GitHubAPIError.InvalidURL
+            throw GitHubAPIError.invalidURL
         }
         
         return url
@@ -45,7 +45,7 @@ public final class GitHubAPIClient: GitHubAPIClientProtocol {
             let (data, _) = try await self.urlSession.data(from: url)
             return data
         } catch {
-            throw GitHubAPIError.ConnectionError
+            throw GitHubAPIError.connectionError
         }
     }
     
@@ -56,7 +56,7 @@ public final class GitHubAPIClient: GitHubAPIClientProtocol {
         do {
             return try decoder.decode([GitHubRepository].self, from: data)
         } catch {
-            throw GitHubAPIError.JsonParseError
+            throw GitHubAPIError.jsonParseError
         }
     }
 }

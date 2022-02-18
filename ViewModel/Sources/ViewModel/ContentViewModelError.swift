@@ -8,15 +8,15 @@
 import Foundation
 
 public enum ContentViewModelError {
-    case RequestError
-    case ResponseError
+    case requestError
+    case responseError
 }
 
 extension ContentViewModelError: LocalizedError {
     public var errorDescription: String? {
         switch self {
-        case .RequestError: return "リクエストが不正です。"
-        case .ResponseError: return "通信に失敗しました。"
+        case .requestError: return "リクエストが不正です。"
+        case .responseError: return "通信に失敗しました。"
         }
     }
 }
