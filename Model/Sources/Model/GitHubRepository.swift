@@ -26,6 +26,8 @@ public struct GitHubRepository {
     }
 }
 
+extension GitHubRepository: Equatable { }
+
 extension GitHubRepository: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
