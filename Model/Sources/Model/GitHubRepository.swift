@@ -14,7 +14,7 @@ public struct GitHubRepository {
     public let htmlURL: URL
     public let description: String
     public let createdAt, updatedAt: Date
-    
+
     public init(id: Int, name: String, htmlURL: URL, description: String,
                 createdAt: Date, updatedAt: Date) {
         self.id = id
@@ -44,7 +44,7 @@ extension GitHubRepository: Decodable {
         self.createdAt = try container.decode(Date.self, forKey: CodingKeys.createdAt)
         self.updatedAt = try container.decode(Date.self, forKey: CodingKeys.updatedAt)
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case id, name
         case fullName = "full_name"
