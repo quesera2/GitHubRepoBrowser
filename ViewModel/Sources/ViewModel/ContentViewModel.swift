@@ -81,4 +81,8 @@ public class ContentViewModel: ObservableObject {
             fatalError("unknown error")
         }
     }
+    
+    public func openBrowser(item: GitHubRepository) {
+        navigator.openUrl(item.htmlURL)
+    }
 }

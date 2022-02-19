@@ -91,7 +91,7 @@ fileprivate final class MockAPIClient: GitHubAPIClientProtocol {
     private let expectError: GitHubAPIError?
 
     private var continuation: CheckedContinuation<[GitHubRepository], Error>!
-    
+
     init(expectResult: [GitHubRepository]? = nil, expectError: GitHubAPIError? = nil) {
         self.expectResult = expectResult
         self.expectError = expectError
