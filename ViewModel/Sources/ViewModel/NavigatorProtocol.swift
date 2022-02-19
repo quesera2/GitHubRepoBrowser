@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol Navigator {
+public protocol NavigatorProtocol {
     
     func openUrl(_ url: URL)
 

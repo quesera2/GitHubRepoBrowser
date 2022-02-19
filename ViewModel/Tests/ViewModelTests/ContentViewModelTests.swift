@@ -7,7 +7,8 @@ final class ContentViewModelTests: XCTestCase {
     
     func testNormal() async throws {
         let apiClient = MockAPIClient(expectResult: Array(dummyRepositoryData[...0]))
-        let viewModel = ContentViewModel(apiClient: apiClient)
+        let navigator = MockNavigator()
+        let viewModel = ContentViewModel(apiClient: apiClient, navigator: navigator)
         
         // 初期状態（エラー、ロード表示なし）
         XCTAssertEqual(viewModel.repositories, [])
@@ -35,7 +36,8 @@ final class ContentViewModelTests: XCTestCase {
     
     func testFailure() async throws {
         let apiClient = MockAPIClient(expectError: .connectionError)
-        let viewModel = ContentViewModel(apiClient: apiClient)
+        let navigator = MockNavigator()
+        let viewModel = ContentViewModel(apiClient: apiClient, navigator: navigator)
         
         // 初期状態（エラー、ロード表示なし）
         XCTAssertEqual(viewModel.repositories, [])
@@ -105,5 +107,10 @@ fileprivate final class MockAPIClient: GitHubAPIClientProtocol {
         case (nil, let expectError?): continuation.resume(throwing: expectError)
         default: fatalError()
         }
+    }
+}
+fileprivate final class MockNavigator: NavigatorProtocol {
+    func openUrl(_ url: URL) {
+        // do nothing.
     }
 }

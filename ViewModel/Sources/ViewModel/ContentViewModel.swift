@@ -54,9 +54,15 @@ public class ContentViewModel: ObservableObject {
     }
 
     private let apiClient: GitHubAPIClientProtocol
+    
+    private let navigator: NavigatorProtocol
 
-    public init(apiClient: GitHubAPIClientProtocol = GitHubAPIClient()) {
+    public init(
+        apiClient: GitHubAPIClientProtocol = GitHubAPIClient(),
+        navigator: NavigatorProtocol
+    ) {
         self.apiClient = apiClient
+        self.navigator = navigator
     }
 
     public func fetchRepository() async {
