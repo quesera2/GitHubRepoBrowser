@@ -6,8 +6,10 @@ import Model
 final class ContentViewModelTests: XCTestCase {
     
     func testNormal() async throws {
+        // 正常系：通信に成功してデータを返す
         let apiClient = MockAPIClient(expectResult: Array(dummyRepositoryData[...0]))
-        let viewModel = ContentViewModel(apiClient: apiClient)
+        let navigator = MockNavigator()
+        let viewModel = ContentViewModel(apiClient: apiClient, navigator: navigator)
         
         // 初期状態（エラー、ロード表示なし）
         XCTAssertEqual(viewModel.repositories, [])
@@ -17,14 +19,14 @@ final class ContentViewModelTests: XCTestCase {
         
         // ロードを実行中
         async let result: () = viewModel.fetchRepository()
-        try await Task.sleep(nanoseconds: 1)
+        await Task.yield()
         XCTAssertEqual(viewModel.repositories, [])
         XCTAssertTrue(viewModel.showProgress)
         XCTAssertFalse(viewModel.needShowError)
         XCTAssertNil(viewModel.occursError)
         
         // ロードを止めて結果を返す
-        apiClient.returnResult()
+        apiClient.resume()
         await result
         XCTAssertEqual(viewModel.repositories.count, 1)
         XCTAssertEqual(viewModel.repositories.first!.name, "テストデータ1")
@@ -34,8 +36,10 @@ final class ContentViewModelTests: XCTestCase {
     }
     
     func testFailure() async throws {
+        // 異常系：通信に失敗してアラートを表示する
         let apiClient = MockAPIClient(expectError: .connectionError)
-        let viewModel = ContentViewModel(apiClient: apiClient)
+        let navigator = MockNavigator()
+        let viewModel = ContentViewModel(apiClient: apiClient, navigator: navigator)
         
         // 初期状態（エラー、ロード表示なし）
         XCTAssertEqual(viewModel.repositories, [])
@@ -45,14 +49,14 @@ final class ContentViewModelTests: XCTestCase {
         
         // ロードを実行中
         async let result: () = viewModel.fetchRepository()
-        try await Task.sleep(nanoseconds: 1)
+        await Task.yield()
         XCTAssertEqual(viewModel.repositories, [])
         XCTAssertTrue(viewModel.showProgress)
         XCTAssertFalse(viewModel.needShowError)
         XCTAssertNil(viewModel.occursError)
         
         // ロードを止めて結果を返す
-        apiClient.returnResult()
+        apiClient.resume()
         await result
         XCTAssertEqual(viewModel.repositories, [])
         XCTAssertFalse(viewModel.showProgress)
@@ -87,7 +91,7 @@ fileprivate final class MockAPIClient: GitHubAPIClientProtocol {
     private let expectError: GitHubAPIError?
 
     private var continuation: CheckedContinuation<[GitHubRepository], Error>!
-    
+
     init(expectResult: [GitHubRepository]? = nil, expectError: GitHubAPIError? = nil) {
         self.expectResult = expectResult
         self.expectError = expectError
@@ -99,11 +103,17 @@ fileprivate final class MockAPIClient: GitHubAPIClientProtocol {
         }
     }
     
-    func returnResult() {
+    func resume() {
         switch (expectResult, expectError) {
-        case (let expectResult?, nil): continuation.resume(returning: expectResult)
-        case (nil, let expectError?): continuation.resume(throwing: expectError)
+        case (let expectResult?, nil): self.continuation.resume(returning: expectResult)
+        case (nil, let expectError?): self.continuation.resume(throwing: expectError)
         default: fatalError()
         }
+    }
+}
+
+fileprivate final class MockNavigator: NavigatorProtocol {
+    func openUrl(_ url: URL) {
+        // do nothing.
     }
 }

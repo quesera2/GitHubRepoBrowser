@@ -9,19 +9,20 @@ import SwiftUI
 import ViewModel
 
 struct ContentView: View {
-    @StateObject private var viewModel = ContentViewModel()
+    @StateObject private var viewModel = ContentViewModel(
+        navigator: Navigator()
+    )
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(viewModel.repositories) { item in
                     GitHubRepositoryView(item: item) {
-                        print($0)
+                        viewModel.openBrowser(item: $0)
                     }
                 }
             }
             .navigationTitle("リポジトリ一覧")
-            .listStyle(.plain)
             .refreshable {
                 await viewModel.fetchRepository()
             }

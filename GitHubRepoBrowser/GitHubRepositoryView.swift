@@ -10,11 +10,11 @@ import SwiftUI
 import Model
 
 struct GitHubRepositoryView: View {
-
+    
     let item: GitHubRepository
-
-    let action: (URL) -> Void
-
+    
+    let action: (GitHubRepository) -> Void
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(item.name)
@@ -34,13 +34,13 @@ struct GitHubRepositoryView: View {
         .padding([.leading, .trailing], 10)
         .padding([.top, .bottom], 5)
         .onTapGesture {
-            self.action(item.htmlURL)
+            self.action(item)
         }
     }
 }
 
 struct GitHubRepositoryView_Previews: PreviewProvider {
-
+    
     static var previews: some View {
         GitHubRepositoryView(
             item: GitHubRepository(id: 1,

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB34D2C327C0A68F00EEB6BC /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB34D2C227C0A68F00EEB6BC /* Navigator.swift */; };
 		FB45334427BB2DA00053A4F0 /* Model in Frameworks */ = {isa = PBXBuildFile; productRef = FB45334327BB2DA00053A4F0 /* Model */; };
 		FB45334627BB37E80053A4F0 /* ViewModel in Frameworks */ = {isa = PBXBuildFile; productRef = FB45334527BB37E80053A4F0 /* ViewModel */; };
 		FBB229A027BE218500CDB0F7 /* GitHubRepositoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB2299F27BE218500CDB0F7 /* GitHubRepositoryView.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB34D2C227C0A68F00EEB6BC /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		FBB2299F27BE218500CDB0F7 /* GitHubRepositoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepositoryView.swift; sourceTree = "<group>"; };
 		FBD6FC3527B3A092005E3EA4 /* GitHubRepoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRepoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD6FC3827B3A092005E3EA4 /* GitHubRepoBrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepoBrowserApp.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				FBD6FC3827B3A092005E3EA4 /* GitHubRepoBrowserApp.swift */,
 				FBD6FC3A27B3A092005E3EA4 /* ContentView.swift */,
 				FBB2299F27BE218500CDB0F7 /* GitHubRepositoryView.swift */,
+				FB34D2C227C0A68F00EEB6BC /* Navigator.swift */,
 				FBD6FC3C27B3A093005E3EA4 /* Assets.xcassets */,
 				FBD6FC3E27B3A093005E3EA4 /* Preview Content */,
 			);
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBB229A027BE218500CDB0F7 /* GitHubRepositoryView.swift in Sources */,
+				FB34D2C327C0A68F00EEB6BC /* Navigator.swift in Sources */,
 				FBD6FC3B27B3A092005E3EA4 /* ContentView.swift in Sources */,
 				FBD6FC3927B3A092005E3EA4 /* GitHubRepoBrowserApp.swift in Sources */,
 			);
