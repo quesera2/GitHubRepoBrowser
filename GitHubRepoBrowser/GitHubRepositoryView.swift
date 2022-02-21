@@ -16,26 +16,30 @@ struct GitHubRepositoryView: View {
     let action: (GitHubRepository) -> Void
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text(item.name)
-                .font(.title2)
-            if !item.description.isEmpty {
-                Text(item.description)
-                    .font(.caption)
-                    .foregroundColor(Color.gray)
+        Button(
+            action: {
+                self.action(item)
+            }, label: {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(item.name)
+                        .font(.title2)
+                        .foregroundColor(Color.primary)
+                    if !item.description.isEmpty {
+                        Text(item.description)
+                            .font(.caption)
+                            .foregroundColor(Color.secondary)
+                    }
+                }
+                .frame(
+                    minWidth: 0,
+                    maxWidth: .infinity,
+                    minHeight: 44,
+                    alignment: .topLeading
+                )
+                .padding([.leading, .trailing], 10)
+                .padding([.top, .bottom], 5)
             }
-        }
-        .frame(
-            minWidth: 0,
-            maxWidth: .infinity,
-            minHeight: 44,
-            alignment: .topLeading
         )
-        .padding([.leading, .trailing], 10)
-        .padding([.top, .bottom], 5)
-        .onTapGesture {
-            self.action(item)
-        }
     }
 }
 
