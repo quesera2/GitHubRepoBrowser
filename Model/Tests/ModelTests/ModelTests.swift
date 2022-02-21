@@ -18,7 +18,8 @@ final class GitHubAPIClientTest: XCTestCase {
     
     func testSuccess() async throws {
         MockURLProtocol.requestHandler = { request in
-            (HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "2.0", headerFields: nil)!, testData.data(using: .utf8)!)
+            (HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "2.0", headerFields: nil)!,
+             testData.data(using: .utf8)!)
         }
         
         let result = try await self.client.fetchRepositories(userName: "test")
@@ -28,7 +29,7 @@ final class GitHubAPIClientTest: XCTestCase {
     
     // 通信エラーの場合
     func testFailureConnection() async throws {
-        MockURLProtocol.requestHandler = { request in
+        MockURLProtocol.requestHandler = { _ in
             throw NSError(domain: NSURLErrorDomain, code: NSURLErrorCannotConnectToHost, userInfo: nil)
         }
         
@@ -45,7 +46,8 @@ final class GitHubAPIClientTest: XCTestCase {
     // JSONが不正な場合
     func testBrokenJson() async throws {
         MockURLProtocol.requestHandler = { request in
-            (HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "2.0", headerFields: nil)!, "]invalid json[".data(using: .utf8)!)
+            (HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "2.0", headerFields: nil)!,
+             "]invalid json[".data(using: .utf8)!)
         }
         
         do {
