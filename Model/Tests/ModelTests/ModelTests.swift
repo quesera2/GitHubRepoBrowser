@@ -44,7 +44,7 @@ private class MockURLProtocol: URLProtocol {
             client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
             client?.urlProtocol(self, didLoad: data)
             client?.urlProtocolDidFinishLoading(self)
-        } catch  {
+        } catch {
             client?.urlProtocol(self, didFailWithError: error)
         }
     }
