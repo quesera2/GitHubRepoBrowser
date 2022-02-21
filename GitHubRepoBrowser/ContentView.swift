@@ -12,6 +12,8 @@ struct ContentView: View {
     @StateObject private var viewModel = ContentViewModel(
         navigator: Navigator()
     )
+    
+    @State(initialValue: "quesera2") private var query: String
 
     var body: some View {
         NavigationView {
@@ -32,6 +34,7 @@ struct ContentView: View {
                 }
             }
         }
+        .searchable(text: $query, prompt: "ユーザー名を入力してください")
         .handleError(
             needShowError: $viewModel.needShowError,
             occursError: viewModel.occursError
