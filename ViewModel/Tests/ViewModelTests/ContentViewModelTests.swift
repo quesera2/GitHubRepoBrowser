@@ -71,6 +71,32 @@ final class ContentViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.occursError)
     }
     
+    func testEmptyInput() async throws {
+        // 入力が空のため何も実行しない
+        let apiClient = MockAPIClient(expectResult: Array(dummyRepositoryData[...0]))
+        let navigator = MockNavigator()
+        let viewModel = ContentViewModel(apiClient: apiClient, navigator: navigator)
+        
+        // 初期状態（エラー、ロード表示なし）
+        XCTAssertEqual(viewModel.repositories, [])
+        XCTAssertFalse(viewModel.showProgress)
+        XCTAssertFalse(viewModel.needShowError)
+        XCTAssertNil(viewModel.occursError)
+        
+        XCTAssertFalse(viewModel.isQueryEmpty)
+        viewModel.query = ""
+        XCTAssertTrue(viewModel.isQueryEmpty)
+        
+        // ロードを実行
+        await viewModel.fetchRepository()
+        
+        // 初期状態と同じであること
+        XCTAssertEqual(viewModel.repositories, [])
+        XCTAssertFalse(viewModel.showProgress)
+        XCTAssertFalse(viewModel.needShowError)
+        XCTAssertNil(viewModel.occursError)
+    }
+    
     func testTransition() {
         // 画面遷移のテスト
         let apiClient = MockAPIClient(expectResult: [])

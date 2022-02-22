@@ -12,7 +12,7 @@ struct ContentView: View {
     @StateObject private var viewModel = ContentViewModel(
         navigator: Navigator()
     )
-
+    
     var body: some View {
         NavigationView {
             List {
@@ -38,6 +38,12 @@ struct ContentView: View {
         )
         .task {
             await viewModel.fetchRepository()
+        }
+        .searchable(text: $viewModel.query, prompt: "ユーザー名を入力してください")
+        .onSubmit(of: .search) {
+            Task {
+                await viewModel.fetchRepository()
+            }
         }
     }
 }
