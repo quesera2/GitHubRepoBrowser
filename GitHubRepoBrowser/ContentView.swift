@@ -41,12 +41,12 @@ struct ContentView: View {
         .task {
             await viewModel.fetchRepository()
         }
-        .searchable(text: $viewModel.query, prompt: "ユーザー名を入力してください")
-        .onSubmit(of: .search) {
-            Task {
-                await viewModel.fetchRepository()
-            }
-        }
+        .modifier(RepositorySearch(
+            query: viewModel.query,
+            action: {
+                viewModel.fetchRepository()
+            })
+        )
     }
 }
 
@@ -64,6 +64,27 @@ private struct HandleError: ViewModifier {
             }
         )
     }
+}
+
+private struct RepositorySearch: ViewModifier {
+    
+    let query: Binding<String>
+    let action: () async -> Void
+    
+    func body(content: Content) -> some View {
+        content.searchable(
+            text: query,
+            prompt: "ユーザー名を入力してください")
+            .keyboardType(.alphabet)
+            .disableAutocorrection(true)
+            .autocapitalization(.none)            
+            .onSubmit(of: .search) {
+                Task {
+                    await self.action()
+                }
+            }
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
