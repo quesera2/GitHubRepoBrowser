@@ -40,6 +40,11 @@ struct ContentView: View {
             await viewModel.fetchRepository()
         }
         .searchable(text: $viewModel.query, prompt: "ユーザー名を入力してください")
+        .onSubmit(of: .search) {
+            Task {
+                await viewModel.fetchRepository()
+            }
+        }
     }
 }
 
