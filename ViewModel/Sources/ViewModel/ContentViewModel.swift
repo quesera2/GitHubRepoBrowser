@@ -52,6 +52,14 @@ public class ContentViewModel: ObservableObject {
         case .failed(let error):  return error
         }
     }
+    
+    /// 検索するリポジトリ名
+    public var query: String = "quesera2"
+
+    ///  リポジトリ名入力があるかどうか
+    public var isQueryEmpty: Bool {
+        query.isEmpty
+    }
 
     private let apiClient: GitHubAPIClientProtocol
     
@@ -66,9 +74,11 @@ public class ContentViewModel: ObservableObject {
     }
 
     public func fetchRepository() async {
+        guard !self.isQueryEmpty else { return }
+        
         self.state = .loading
         do {
-            let result = try await apiClient.fetchRepositories(userName: "quesera2")
+            let result = try await apiClient.fetchRepositories(userName: self.query)
             self.state = .loaded(result)
         } catch let error as GitHubAPIError {
             switch error {

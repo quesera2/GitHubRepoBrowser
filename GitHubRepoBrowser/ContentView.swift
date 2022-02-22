@@ -13,8 +13,6 @@ struct ContentView: View {
         navigator: Navigator()
     )
     
-    @State(initialValue: "quesera2") private var query: String
-
     var body: some View {
         NavigationView {
             List {
@@ -34,7 +32,6 @@ struct ContentView: View {
                 }
             }
         }
-        .searchable(text: $query, prompt: "ユーザー名を入力してください")
         .handleError(
             needShowError: $viewModel.needShowError,
             occursError: viewModel.occursError
@@ -42,6 +39,7 @@ struct ContentView: View {
         .task {
             await viewModel.fetchRepository()
         }
+        .searchable(text: $viewModel.query, prompt: "ユーザー名を入力してください")
     }
 }
 
