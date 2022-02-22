@@ -32,9 +32,11 @@ struct ContentView: View {
                 }
             }
         }
-        .handleError(
-            needShowError: $viewModel.needShowError,
-            occursError: viewModel.occursError
+        .modifier(
+            HandleError(
+                needShowError: $viewModel.needShowError,
+                occursError: viewModel.occursError
+            )
         )
         .task {
             await viewModel.fetchRepository()
@@ -48,10 +50,13 @@ struct ContentView: View {
     }
 }
 
-fileprivate extension View {
-    func handleError(needShowError: Binding<Bool>,
-                     occursError: ContentViewModelError?) -> some View {
-        return alert(
+private struct HandleError: ViewModifier {
+    
+    let needShowError: Binding<Bool>
+    let occursError: ContentViewModelError?
+    
+    func body(content: Content) -> some View {
+        content.alert(
             isPresented: needShowError,
             error: occursError,
             actions: {
