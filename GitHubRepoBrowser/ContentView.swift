@@ -42,9 +42,9 @@ struct ContentView: View {
             await viewModel.fetchRepository()
         }
         .modifier(RepositorySearch(
-            query: viewModel.query,
+            query: $viewModel.query,
             action: {
-                viewModel.fetchRepository()
+                await viewModel.fetchRepository()
             })
         )
     }
