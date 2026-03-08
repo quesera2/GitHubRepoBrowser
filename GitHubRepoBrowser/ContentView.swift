@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         @Bindable var viewModel = viewModel
         
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(viewModel.repositories) { item in
                     GitHubRepositoryView(item: item) {
@@ -64,7 +64,7 @@ private struct RepositorySearch: ViewModifier {
             prompt: "ユーザー名を入力してください")
             .keyboardType(.alphabet)
             .disableAutocorrection(true)
-            .autocapitalization(.none)            
+            .textInputAutocapitalization(.never)
             .onSubmit(of: .search) {
                 Task {
                     await self.action()
@@ -74,8 +74,6 @@ private struct RepositorySearch: ViewModifier {
     
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }
