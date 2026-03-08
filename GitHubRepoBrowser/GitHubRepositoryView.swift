@@ -23,11 +23,11 @@ struct GitHubRepositoryView: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text(item.name)
                         .font(.title2)
-                        .foregroundColor(Color.primary)
+                        .foregroundColor(.primary)
                     if !item.description.isEmpty {
                         Text(item.description)
                             .font(.caption)
-                            .foregroundColor(Color.secondary)
+                            .foregroundColor(.secondary)
                     }
                 }
                 .frame(
@@ -43,17 +43,14 @@ struct GitHubRepositoryView: View {
     }
 }
 
-struct GitHubRepositoryView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        GitHubRepositoryView(
-            item: GitHubRepository(id: 1,
-                                   name: "テストデータ",
-                                   htmlURL: URL(string: "http://google.com")!,
-                                   description: "説明テキスト",
-                                   createdAt: Date(),
-                                   updatedAt: Date()),
-            action: { _ in }
-        )
-    }
+#Preview {
+    GitHubRepositoryView(
+        item: GitHubRepository(id: 1,
+                               name: "テストデータ",
+                               htmlURL: URL(string: "http://google.com")!,
+                               description: "説明テキスト",
+                               createdAt: Date(),
+                               updatedAt: Date()),
+        action: { _ in }
+    )
 }
