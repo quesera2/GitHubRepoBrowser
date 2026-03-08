@@ -38,6 +38,16 @@
                ReferencedContainer = "container:GitHubRepoBrowser.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ViewModelTests"
+               BuildableName = "ViewModelTests"
+               BlueprintName = "ViewModelTests"
+               ReferencedContainer = "container:ViewModel">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
