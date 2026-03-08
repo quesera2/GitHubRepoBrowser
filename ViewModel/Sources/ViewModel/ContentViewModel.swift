@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import Observation
 import Model
 
 @MainActor
-public class ContentViewModel: ObservableObject {
+@Observable
+public class ContentViewModel {
 
-    @Published private var state: ContentViewModelState = .idle
+    private var state: ContentViewModelState = .idle
 
     /// 読込中表示
     public var showProgress: Bool {
@@ -62,7 +64,6 @@ public class ContentViewModel: ObservableObject {
     }
 
     private let apiClient: GitHubAPIClientProtocol
-    
     private let navigator: NavigatorProtocol
 
     public init(
@@ -91,7 +92,7 @@ public class ContentViewModel: ObservableObject {
             fatalError("unknown error")
         }
     }
-    
+
     public func openBrowser(item: GitHubRepository) {
         navigator.openUrl(item.htmlURL)
     }

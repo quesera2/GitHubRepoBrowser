@@ -15,8 +15,6 @@
 		FBD6FC3B27B3A092005E3EA4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC3A27B3A092005E3EA4 /* ContentView.swift */; };
 		FBD6FC3D27B3A093005E3EA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD6FC3C27B3A093005E3EA4 /* Assets.xcassets */; };
 		FBD6FC4027B3A093005E3EA4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD6FC3F27B3A093005E3EA4 /* Preview Assets.xcassets */; };
-		FBD6FC5427B3A093005E3EA4 /* GitHubRepoBrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC5327B3A093005E3EA4 /* GitHubRepoBrowserUITests.swift */; };
-		FBD6FC5627B3A093005E3EA4 /* GitHubRepoBrowserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD6FC5527B3A093005E3EA4 /* GitHubRepoBrowserUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +36,6 @@
 		FBD6FC3C27B3A093005E3EA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBD6FC3F27B3A093005E3EA4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FBD6FC4F27B3A093005E3EA4 /* GitHubRepoBrowserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubRepoBrowserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FBD6FC5327B3A093005E3EA4 /* GitHubRepoBrowserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepoBrowserUITests.swift; sourceTree = "<group>"; };
-		FBD6FC5527B3A093005E3EA4 /* GitHubRepoBrowserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepoBrowserUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +108,6 @@
 		FBD6FC5227B3A093005E3EA4 /* GitHubRepoBrowserUITests */ = {
 			isa = PBXGroup;
 			children = (
-				FBD6FC5327B3A093005E3EA4 /* GitHubRepoBrowserUITests.swift */,
-				FBD6FC5527B3A093005E3EA4 /* GitHubRepoBrowserUITestsLaunchTests.swift */,
 			);
 			path = GitHubRepoBrowserUITests;
 			sourceTree = "<group>";
@@ -257,8 +251,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBD6FC5627B3A093005E3EA4 /* GitHubRepoBrowserUITestsLaunchTests.swift in Sources */,
-				FBD6FC5427B3A093005E3EA4 /* GitHubRepoBrowserUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +396,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -432,6 +425,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -448,7 +442,6 @@
 		FBD6FC6027B3A093005E3EA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -465,7 +458,6 @@
 		FBD6FC6127B3A093005E3EA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
