@@ -9,11 +9,13 @@ import SwiftUI
 import ViewModel
 
 struct ContentView: View {
-    @StateObject private var viewModel = ContentViewModel(
+    @State private var viewModel = ContentViewModel(
         navigator: Navigator()
     )
     
     var body: some View {
+        @Bindable var viewModel = viewModel
+        
         NavigationView {
             List {
                 ForEach(viewModel.repositories) { item in
@@ -32,11 +34,12 @@ struct ContentView: View {
                 }
             }
         }
-        .modifier(
-            HandleError(
-                needShowError: $viewModel.needShowError,
-                occursError: viewModel.occursError
-            )
+        .alert(
+            isPresented: $viewModel.needShowError,
+            error: viewModel.occursError,
+            actions: {
+                // do nothing.
+            }
         )
         .task {
             await viewModel.fetchRepository()
@@ -50,30 +53,14 @@ struct ContentView: View {
     }
 }
 
-private struct HandleError: ViewModifier {
-    
-    let needShowError: Binding<Bool>
-    let occursError: ContentViewModelError?
-    
-    func body(content: Content) -> some View {
-        content.alert(
-            isPresented: needShowError,
-            error: occursError,
-            actions: {
-                // do nothing.
-            }
-        )
-    }
-}
-
 private struct RepositorySearch: ViewModifier {
     
-    let query: Binding<String>
+    @Binding var query: String
     let action: () async -> Void
     
     func body(content: Content) -> some View {
         content.searchable(
-            text: query,
+            text: $query,
             prompt: "ユーザー名を入力してください")
             .keyboardType(.alphabet)
             .disableAutocorrection(true)

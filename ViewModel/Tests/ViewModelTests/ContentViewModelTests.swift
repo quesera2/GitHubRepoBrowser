@@ -96,7 +96,7 @@ final class ContentViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.needShowError)
         XCTAssertNil(viewModel.occursError)
     }
-    
+
     func testTransition() {
         // 画面遷移のテスト
         let apiClient = MockAPIClient(expectResult: [])
@@ -108,6 +108,7 @@ final class ContentViewModelTests: XCTestCase {
         XCTAssertTrue(navigator.called)
         XCTAssertEqual(navigator.capturedUrl, dummyRepositoryData[2].htmlURL)
     }
+    
 }
 
 private let dummyRepositoryData: [GitHubRepository] = {
@@ -160,3 +161,4 @@ fileprivate final class MockNavigator: NavigatorProtocol {
         capturedUrl = url
     }
 }
+
