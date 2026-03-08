@@ -3,47 +3,38 @@ import Foundation
 @testable import Model
 
 struct GitHubAPIClientTests {
-
-    private func makeClient() -> GitHubAPIClient {
-        let config = URLSessionConfiguration.ephemeral
-        config.protocolClasses = [MockURLProtocol.self]
-        let session = URLSession(configuration: config)
-        return GitHubAPIClient(urlSession: session)
+    
+    private func makeClient(
+        handler: @escaping (@Sendable (URLRequest) async throws -> (Data, HTTPURLResponse))
+    ) -> GitHubAPIClient {
+        return GitHubAPIClient(httpClient: MockHTTPClient(handler: handler))
     }
-
+    
     @Test("正常系：通信に成功してデータを返す")
     func success() async throws {
-        MockURLProtocol.requestHandler = { request in
-            (HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "2.0", headerFields: nil)!,
-             testData.data(using: .utf8)!)
+        let client = makeClient { request in
+            (testData.data(using: .utf8)!, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "2.0", headerFields: nil)!)
         }
-
-        let client = makeClient()
         let result = try await client.fetchRepositories(userName: "test")
         #expect(result.count == 1)
         #expect(result.first?.name == "RxSwift")
     }
-
+    
     @Test("通信エラーの場合")
     func failureConnection() async throws {
-        MockURLProtocol.requestHandler = { _ in
+        let client = makeClient { _ in
             throw NSError(domain: NSURLErrorDomain, code: NSURLErrorCannotConnectToHost, userInfo: nil)
         }
-
-        let client = makeClient()
         await #expect(throws: GitHubAPIError.connectionError) {
             try await client.fetchRepositories(userName: "test")
         }
     }
-
+    
     @Test("JSONが不正な場合")
     func brokenJson() async throws {
-        MockURLProtocol.requestHandler = { request in
-            (HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "2.0", headerFields: nil)!,
-             "]invalid json[".data(using: .utf8)!)
+        let client = makeClient { request in
+            ("]invalid json[".data(using: .utf8)!, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "2.0", headerFields: nil)!)
         }
-
-        let client = makeClient()
         await #expect(throws: GitHubAPIError.jsonParseError) {
             try await client.fetchRepositories(userName: "test")
         }
@@ -51,37 +42,23 @@ struct GitHubAPIClientTests {
 }
 
 // 通信テスト用のモック
-private class MockURLProtocol: URLProtocol {
+private final class MockHTTPClient: HTTPClient {
     
-    static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
+    let handler: (@Sendable (URLRequest) async throws -> (Data, HTTPURLResponse))
     
-    override class func canInit(with request: URLRequest) -> Bool {
-        return true
+    init(handler: @Sendable @escaping (URLRequest) async throws -> (Data, HTTPURLResponse)) {
+        self.handler = handler
     }
     
-    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
-        return request
+    func data(from url: URL) async throws -> (Data, URLResponse) {
+        try await self.handler(URLRequest(url: url))
     }
     
-    override func startLoading() {
-        guard let handler = MockURLProtocol.requestHandler else {
-            fatalError()
-        }
-        
-        do {
-            let (response, data)  = try handler(request)
-            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-            client?.urlProtocol(self, didLoad: data)
-            client?.urlProtocolDidFinishLoading(self)
-        } catch {
-            client?.urlProtocol(self, didFailWithError: error)
-        }
-    }
-    
-    override func stopLoading() {
-        // for canceled.
+    func data(for request: URLRequest) async throws -> (Data, URLResponse) {
+        try await self.handler(request)
     }
 }
+
 
 private let testData = """
 [

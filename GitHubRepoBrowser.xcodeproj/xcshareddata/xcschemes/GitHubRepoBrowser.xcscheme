@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1330"
+   LastUpgradeVersion = "2630"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -36,6 +36,16 @@
                BuildableName = "GitHubRepoBrowserUITests.xctest"
                BlueprintName = "GitHubRepoBrowserUITests"
                ReferencedContainer = "container:GitHubRepoBrowser.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ViewModelTests"
+               BuildableName = "ViewModelTests"
+               BlueprintName = "ViewModelTests"
+               ReferencedContainer = "container:ViewModel">
             </BuildableReference>
          </TestableReference>
       </Testables>

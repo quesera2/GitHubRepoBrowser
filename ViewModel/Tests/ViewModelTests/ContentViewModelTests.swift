@@ -1,5 +1,6 @@
 import Testing
 import Model
+import Foundation
 @testable import ViewModel
 
 @MainActor
@@ -97,6 +98,28 @@ struct ContentViewModelTests {
         #expect(viewModel.occursError == nil)
     }
 
+    @Test("タスクキャンセル時にクラッシュしない")
+    func cancellation() async throws {
+        let apiClient = MockAPIClient(expectResult: Array(dummyRepositoryData[...0]))
+        let navigator = MockNavigator()
+        let viewModel = ContentViewModel(apiClient: apiClient, navigator: navigator)
+
+        // ロードを開始
+        let task = Task { @MainActor in
+            await viewModel.fetchRepository()
+        }
+        await Task.yield()
+        #expect(viewModel.showProgress == true)
+
+        // タスクをキャンセル
+        task.cancel()
+        await task.value
+
+        // fatalErrorせずに完了すること（loading状態のまま残る）
+        #expect(viewModel.needShowError == false)
+        #expect(viewModel.occursError == nil)
+    }
+
     @Test("画面遷移のテスト")
     func transition() {
         let apiClient = MockAPIClient(expectResult: [])
@@ -123,28 +146,36 @@ private let dummyRepositoryData: [GitHubRepository] = {
     }
 }()
 
-fileprivate final class MockAPIClient: GitHubAPIClientProtocol {
+fileprivate final class MockAPIClient: GitHubAPIClientProtocol, @unchecked Sendable {
 
     private let expectResult: [GitHubRepository]?
     private let expectError: GitHubAPIError?
 
-    private var continuation: CheckedContinuation<[GitHubRepository], Error>!
+    private var continuation: CheckedContinuation<[GitHubRepository], Error>?
+    private let continuationReady = DispatchSemaphore(value: 0)
 
     init(expectResult: [GitHubRepository]? = nil, expectError: GitHubAPIError? = nil) {
         self.expectResult = expectResult
         self.expectError = expectError
     }
 
-    func fetchRepositories(userName: String) async throws -> [GitHubRepository] {
-        return try await withCheckedThrowingContinuation { continuation in
-            self.continuation = continuation
+    nonisolated func fetchRepositories(userName: String) async throws -> [GitHubRepository] {
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                self.continuation = continuation
+                self.continuationReady.signal()
+            }
+        } onCancel: {
+            self.continuationReady.wait()
+            self.continuation?.resume(throwing: CancellationError())
         }
     }
-    
+
     func resume() {
+        continuationReady.wait()
         switch (expectResult, expectError) {
-        case (let expectResult?, nil): self.continuation.resume(returning: expectResult)
-        case (nil, let expectError?): self.continuation.resume(throwing: expectError)
+        case (let expectResult?, nil): self.continuation!.resume(returning: expectResult)
+        case (nil, let expectError?): self.continuation!.resume(throwing: expectError)
         default: fatalError()
         }
     }
