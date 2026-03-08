@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Model
 
 @main
 struct GitHubRepoBrowserApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentViewScreen()
+                .environment(\.apiClient, GitHubAPIClient(httpClient: URLSessionHTTPClient(URLSession.shared)))
+                .environment(\.navigator, Navigator())
         }
     }
 }

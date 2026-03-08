@@ -67,7 +67,7 @@ public class ContentViewModel {
     private let navigator: NavigatorProtocol
     
     public init(
-        apiClient: GitHubAPIClientProtocol = GitHubAPIClient(),
+        apiClient: GitHubAPIClientProtocol,
         navigator: NavigatorProtocol
     ) {
         self.apiClient = apiClient

@@ -7,11 +7,25 @@
 
 import SwiftUI
 import ViewModel
+import Model
+
+struct ContentViewScreen: View {
+    @Environment(\.navigator) private var navigator: NavigatorProtocol
+    @Environment(\.apiClient) private var apiClient: GitHubAPIClientProtocol
+    
+    var body: some View {
+        ContentView(navigator: navigator, apiClient: apiClient)
+    }
+}
 
 struct ContentView: View {
-    @State private var viewModel = ContentViewModel(
-        navigator: Navigator()
-    )
+        
+    @State private var viewModel: ContentViewModel
+    
+    init(navigator: NavigatorProtocol,
+         apiClient: GitHubAPIClientProtocol) {
+        self.viewModel = .init(apiClient: apiClient, navigator: navigator)
+    }
     
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -75,5 +89,8 @@ private struct RepositorySearch: ViewModifier {
 }
 
 #Preview {
-    ContentView()
+    ContentView(
+        navigator: Navigator(),
+        apiClient: GitHubAPIClient(httpClient: URLSessionHTTPClient(URLSession.shared))
+    )
 }
