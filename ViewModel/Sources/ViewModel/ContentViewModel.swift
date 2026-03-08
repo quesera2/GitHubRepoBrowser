@@ -88,6 +88,8 @@ public class ContentViewModel {
             case .connectionError, .jsonParseError:
                 self.state = .failed(.responseError)
             }
+        } catch is CancellationError {
+            // タスクがキャンセルされた場合は何もしない
         } catch {
             fatalError("unknown error")
         }

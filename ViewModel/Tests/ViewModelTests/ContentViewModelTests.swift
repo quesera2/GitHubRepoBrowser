@@ -98,6 +98,28 @@ struct ContentViewModelTests {
         #expect(viewModel.occursError == nil)
     }
 
+    @Test("タスクキャンセル時にクラッシュしない")
+    func cancellation() async throws {
+        let apiClient = MockAPIClient(expectResult: Array(dummyRepositoryData[...0]))
+        let navigator = MockNavigator()
+        let viewModel = ContentViewModel(apiClient: apiClient, navigator: navigator)
+
+        // ロードを開始
+        let task = Task { @MainActor in
+            await viewModel.fetchRepository()
+        }
+        await Task.yield()
+        #expect(viewModel.showProgress == true)
+
+        // タスクをキャンセル
+        task.cancel()
+        await task.value
+
+        // fatalErrorせずに完了すること（loading状態のまま残る）
+        #expect(viewModel.needShowError == false)
+        #expect(viewModel.occursError == nil)
+    }
+
     @Test("画面遷移のテスト")
     func transition() {
         let apiClient = MockAPIClient(expectResult: [])
@@ -138,9 +160,14 @@ fileprivate final class MockAPIClient: GitHubAPIClientProtocol, @unchecked Senda
     }
 
     nonisolated func fetchRepositories(userName: String) async throws -> [GitHubRepository] {
-        return try await withCheckedThrowingContinuation { continuation in
-            self.continuation = continuation
-            self.continuationReady.signal()
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                self.continuation = continuation
+                self.continuationReady.signal()
+            }
+        } onCancel: {
+            self.continuationReady.wait()
+            self.continuation?.resume(throwing: CancellationError())
         }
     }
 
