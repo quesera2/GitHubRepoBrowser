@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol GitHubAPIClientProtocol {
+public protocol GitHubAPIClientProtocol: Sendable {
 
     func fetchRepositories(userName: String) async throws -> [GitHubRepository]
 }

@@ -16,11 +16,9 @@ let package = Package(
     targets: [
         .target(
             name: "ViewModel",
-            dependencies: ["Model"],
-            swiftSettings: [.swiftLanguageMode(.v5)]),
+            dependencies: ["Model"]),
         .testTarget(
             name: "ViewModelTests",
-            dependencies: ["ViewModel"],
-            swiftSettings: [.swiftLanguageMode(.v5)])
+            dependencies: ["ViewModel"])
     ]
 )
