@@ -1,114 +1,113 @@
-import XCTest
+import Testing
 import Model
 @testable import ViewModel
 
 @MainActor
-final class ContentViewModelTests: XCTestCase {
-    
-    func testNormal() async throws {
-        // 正常系：通信に成功してデータを返す
+struct ContentViewModelTests {
+
+    @Test("正常系：通信に成功してデータを返す")
+    func normal() async throws {
         let apiClient = MockAPIClient(expectResult: Array(dummyRepositoryData[...0]))
         let navigator = MockNavigator()
         let viewModel = ContentViewModel(apiClient: apiClient, navigator: navigator)
-        
+
         // 初期状態（エラー、ロード表示なし）
-        XCTAssertEqual(viewModel.repositories, [])
-        XCTAssertFalse(viewModel.showProgress)
-        XCTAssertFalse(viewModel.needShowError)
-        XCTAssertNil(viewModel.occursError)
-        
+        #expect(viewModel.repositories == [])
+        #expect(viewModel.showProgress == false)
+        #expect(viewModel.needShowError == false)
+        #expect(viewModel.occursError == nil)
+
         // ロードを実行中
         async let result: () = viewModel.fetchRepository()
         await Task.yield()
-        XCTAssertEqual(viewModel.repositories, [])
-        XCTAssertTrue(viewModel.showProgress)
-        XCTAssertFalse(viewModel.needShowError)
-        XCTAssertNil(viewModel.occursError)
-        
+        #expect(viewModel.repositories == [])
+        #expect(viewModel.showProgress == true)
+        #expect(viewModel.needShowError == false)
+        #expect(viewModel.occursError == nil)
+
         // ロードを止めて結果を返す
         apiClient.resume()
         await result
-        XCTAssertEqual(viewModel.repositories.count, 1)
-        XCTAssertEqual(viewModel.repositories.first!.name, "テストデータ1")
-        XCTAssertFalse(viewModel.showProgress)
-        XCTAssertFalse(viewModel.needShowError)
-        XCTAssertNil(viewModel.occursError)
+        #expect(viewModel.repositories.count == 1)
+        #expect(viewModel.repositories.first?.name == "テストデータ1")
+        #expect(viewModel.showProgress == false)
+        #expect(viewModel.needShowError == false)
+        #expect(viewModel.occursError == nil)
     }
-    
-    func testFailure() async throws {
-        // 異常系：通信に失敗してアラートを表示する
+
+    @Test("異常系：通信に失敗してアラートを表示する")
+    func failure() async throws {
         let apiClient = MockAPIClient(expectError: .connectionError)
         let navigator = MockNavigator()
         let viewModel = ContentViewModel(apiClient: apiClient, navigator: navigator)
-        
+
         // 初期状態（エラー、ロード表示なし）
-        XCTAssertEqual(viewModel.repositories, [])
-        XCTAssertFalse(viewModel.showProgress)
-        XCTAssertFalse(viewModel.needShowError)
-        XCTAssertNil(viewModel.occursError)
-        
+        #expect(viewModel.repositories == [])
+        #expect(viewModel.showProgress == false)
+        #expect(viewModel.needShowError == false)
+        #expect(viewModel.occursError == nil)
+
         // ロードを実行中
         async let result: () = viewModel.fetchRepository()
         await Task.yield()
-        XCTAssertEqual(viewModel.repositories, [])
-        XCTAssertTrue(viewModel.showProgress)
-        XCTAssertFalse(viewModel.needShowError)
-        XCTAssertNil(viewModel.occursError)
-        
+        #expect(viewModel.repositories == [])
+        #expect(viewModel.showProgress == true)
+        #expect(viewModel.needShowError == false)
+        #expect(viewModel.occursError == nil)
+
         // ロードを止めて結果を返す
         apiClient.resume()
         await result
-        XCTAssertEqual(viewModel.repositories, [])
-        XCTAssertFalse(viewModel.showProgress)
-        XCTAssertTrue(viewModel.needShowError)
-        XCTAssertEqual(viewModel.occursError, .responseError)
-        
+        #expect(viewModel.repositories == [])
+        #expect(viewModel.showProgress == false)
+        #expect(viewModel.needShowError == true)
+        #expect(viewModel.occursError == .responseError)
+
         // アラートを閉じると初期状態に戻る
         viewModel.needShowError = false
-        XCTAssertEqual(viewModel.repositories, [])
-        XCTAssertFalse(viewModel.showProgress)
-        XCTAssertFalse(viewModel.needShowError)
-        XCTAssertNil(viewModel.occursError)
+        #expect(viewModel.repositories == [])
+        #expect(viewModel.showProgress == false)
+        #expect(viewModel.needShowError == false)
+        #expect(viewModel.occursError == nil)
     }
-    
-    func testEmptyInput() async throws {
-        // 入力が空のため何も実行しない
+
+    @Test("入力が空のため何も実行しない")
+    func emptyInput() async throws {
         let apiClient = MockAPIClient(expectResult: Array(dummyRepositoryData[...0]))
         let navigator = MockNavigator()
         let viewModel = ContentViewModel(apiClient: apiClient, navigator: navigator)
-        
+
         // 初期状態（エラー、ロード表示なし）
-        XCTAssertEqual(viewModel.repositories, [])
-        XCTAssertFalse(viewModel.showProgress)
-        XCTAssertFalse(viewModel.needShowError)
-        XCTAssertNil(viewModel.occursError)
-        
-        XCTAssertFalse(viewModel.isQueryEmpty)
+        #expect(viewModel.repositories == [])
+        #expect(viewModel.showProgress == false)
+        #expect(viewModel.needShowError == false)
+        #expect(viewModel.occursError == nil)
+
+        #expect(viewModel.isQueryEmpty == false)
         viewModel.query = ""
-        XCTAssertTrue(viewModel.isQueryEmpty)
-        
+        #expect(viewModel.isQueryEmpty == true)
+
         // ロードを実行
         await viewModel.fetchRepository()
-        
+
         // 初期状態と同じであること
-        XCTAssertEqual(viewModel.repositories, [])
-        XCTAssertFalse(viewModel.showProgress)
-        XCTAssertFalse(viewModel.needShowError)
-        XCTAssertNil(viewModel.occursError)
+        #expect(viewModel.repositories == [])
+        #expect(viewModel.showProgress == false)
+        #expect(viewModel.needShowError == false)
+        #expect(viewModel.occursError == nil)
     }
 
-    func testTransition() {
-        // 画面遷移のテスト
+    @Test("画面遷移のテスト")
+    func transition() {
         let apiClient = MockAPIClient(expectResult: [])
         let navigator = MockNavigator()
         let viewModel = ContentViewModel(apiClient: apiClient, navigator: navigator)
-        
-        XCTAssertFalse(navigator.called)
+
+        #expect(navigator.called == false)
         viewModel.openBrowser(item: dummyRepositoryData[2])
-        XCTAssertTrue(navigator.called)
-        XCTAssertEqual(navigator.capturedUrl, dummyRepositoryData[2].htmlURL)
+        #expect(navigator.called == true)
+        #expect(navigator.capturedUrl == dummyRepositoryData[2].htmlURL)
     }
-    
 }
 
 private let dummyRepositoryData: [GitHubRepository] = {
