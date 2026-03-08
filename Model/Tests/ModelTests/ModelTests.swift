@@ -41,10 +41,6 @@ struct GitHubAPIClientTests {
     }
 }
 
-private actor MockURLProtocolStorage {
-    var handler: (@Sendable (URLRequest) async throws -> (HTTPURLResponse, Data))?
-}
-
 // 通信テスト用のモック
 private final class MockHTTPClient: HTTPClient {
     
