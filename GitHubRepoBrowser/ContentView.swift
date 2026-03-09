@@ -36,17 +36,34 @@ struct ContentView: View {
                     GitHubRepositoryView(item: item) {
                         viewModel.openBrowser(item: $0)
                     }
+                    .listRowSeparator(.visible)
                 }
             }
-            .navigationTitle("リポジトリ一覧")
+            .listStyle(.plain)
+            .navigationTitle(viewModel.repositories.isEmpty
+                ? "リポジトリ一覧"
+                : "リポジトリ一覧（\(viewModel.repositories.count)件）"
+            )
             .refreshable {
                 await viewModel.fetchRepository()
             }
             .overlay {
                 if viewModel.showProgress {
                     ProgressView()
+                } else if viewModel.hasLoaded && viewModel.repositories.isEmpty {
+                    ContentUnavailableView(
+                        "リポジトリが見つかりません",
+                        systemImage: "folder",
+                        description: Text("このユーザーにはリポジトリがありません")
+                    )
                 }
             }
+            .modifier(RepositorySearch(
+                query: $viewModel.query,
+                action: {
+                    await viewModel.fetchRepository()
+                })
+            )
         }
         .alert(
             isPresented: $viewModel.needShowError,
@@ -58,12 +75,6 @@ struct ContentView: View {
         .task {
             await viewModel.fetchRepository()
         }
-        .modifier(RepositorySearch(
-            query: $viewModel.query,
-            action: {
-                await viewModel.fetchRepository()
-            })
-        )
     }
 }
 
@@ -77,7 +88,7 @@ private struct RepositorySearch: ViewModifier {
             text: $query,
             prompt: "ユーザー名を入力してください")
             .keyboardType(.alphabet)
-            .disableAutocorrection(true)
+            .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
             .onSubmit(of: .search) {
                 Task {

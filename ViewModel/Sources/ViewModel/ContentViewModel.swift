@@ -31,6 +31,14 @@ public class ContentViewModel {
         }
     }
     
+    /// ロード済みかどうか（空の結果も含む）
+    public var hasLoaded: Bool {
+        switch self.state {
+        case .loaded: return true
+        case .idle, .loading, .failed: return false
+        }
+    }
+    
     /// エラーアラートを表示するかどうか
     public var needShowError: Bool {
         get {
