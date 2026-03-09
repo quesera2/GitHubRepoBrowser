@@ -10,47 +10,79 @@ import SwiftUI
 import Model
 
 struct GitHubRepositoryView: View {
-    
+
     let item: GitHubRepository
-    
+
     let action: (GitHubRepository) -> Void
-    
+
     var body: some View {
-        Button(
-            action: {
-                self.action(item)
-            }, label: {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text(item.name)
-                        .font(.title2)
-                        .foregroundColor(.primary)
-                    if !item.description.isEmpty {
-                        Text(item.description)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
+        Button {
+            self.action(item)
+        } label: {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(item.name)
+                    .font(.headline)
+                    .foregroundStyle(.primary)
+
+                if !item.description.isEmpty {
+                    Text(item.description)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(2)
                 }
-                .frame(
-                    minWidth: 0,
-                    maxWidth: .infinity,
-                    minHeight: 44,
-                    alignment: .topLeading
-                )
-                .padding([.leading, .trailing], 10)
-                .padding([.top, .bottom], 5)
+
+                HStack(spacing: 16) {
+                    if let language = item.language {
+                        Label(language, systemImage: "chevron.left.forwardslash.chevron.right")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Label {
+                        Text(item.stargazersCount, format: .number)
+                            .font(.caption)
+                    } icon: {
+                        Image(systemName: "star.fill")
+                            .foregroundStyle(.yellow)
+                            .font(.caption)
+                    }
+                    .foregroundStyle(.secondary)
+
+                    Spacer()
+
+                    Text(item.updatedAt, format: .relative(presentation: .named))
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
+                }
             }
-        )
+            .padding(.vertical, 4)
+        }
+        .buttonStyle(.plain)
     }
 }
 
 #Preview {
-    GitHubRepositoryView(
-        item: GitHubRepository(id: 1,
-                               name: "テストデータ",
-                               htmlURL: URL(string: "http://google.com")!,
-                               description: "説明テキスト",
-                               createdAt: Date(),
-                               updatedAt: Date()),
-        action: { _ in }
-    )
+    List {
+        GitHubRepositoryView(
+            item: GitHubRepository(id: 1,
+                                   name: "swift-composable-architecture",
+                                   htmlURL: URL(string: "http://example.com")!,
+                                   description: "A library for building applications in a consistent and understandable way.",
+                                   stargazersCount: 12300,
+                                   language: "Swift",
+                                   createdAt: Date(),
+                                   updatedAt: Date().addingTimeInterval(-86400)),
+            action: { _ in }
+        )
+        GitHubRepositoryView(
+            item: GitHubRepository(id: 2,
+                                   name: "my-project",
+                                   htmlURL: URL(string: "http://example.com")!,
+                                   description: "",
+                                   stargazersCount: 0,
+                                   createdAt: Date(),
+                                   updatedAt: Date()),
+            action: { _ in }
+        )
+    }
 }

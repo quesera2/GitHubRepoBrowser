@@ -13,14 +13,19 @@ public struct GitHubRepository {
     public let name: String
     public let htmlURL: URL
     public let description: String
+    public let stargazersCount: Int
+    public let language: String?
     public let createdAt, updatedAt: Date
 
     public init(id: Int, name: String, htmlURL: URL, description: String,
+                stargazersCount: Int = 0, language: String? = nil,
                 createdAt: Date, updatedAt: Date) {
         self.id = id
         self.name = name
         self.htmlURL = htmlURL
         self.description = description
+        self.stargazersCount = stargazersCount
+        self.language = language
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
@@ -36,6 +41,8 @@ extension GitHubRepository: Decodable {
         self.id = try container.decode(Int.self, forKey: CodingKeys.id)
         self.name = try container.decode(String.self, forKey: CodingKeys.name)
         self.description = try container.decode(String?.self, forKey: CodingKeys.description) ?? ""
+        self.stargazersCount = try container.decode(Int.self, forKey: CodingKeys.stargazersCount)
+        self.language = try container.decodeIfPresent(String.self, forKey: CodingKeys.language)
         let htmlURLString = try container.decode(String.self, forKey: CodingKeys.htmlURL)
         guard
             let htmlURL = URL(string: htmlURLString)
@@ -54,6 +61,8 @@ extension GitHubRepository: Decodable {
         case fullName = "full_name"
         case htmlURL = "html_url"
         case description
+        case stargazersCount = "stargazers_count"
+        case language
         case url
         case createdAt = "created_at"
         case updatedAt = "updated_at"
