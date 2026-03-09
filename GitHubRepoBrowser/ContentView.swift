@@ -21,6 +21,7 @@ struct ContentViewScreen: View {
 struct ContentView: View {
         
     @State private var viewModel: ContentViewModel
+    @State private var isSearchPresented = false
     
     init(navigator: NavigatorProtocol,
          apiClient: GitHubAPIClientProtocol) {
@@ -58,12 +59,19 @@ struct ContentView: View {
                     )
                 }
             }
-            .modifier(RepositorySearch(
-                query: $viewModel.query,
-                action: {
+            .searchable(
+                text: $viewModel.query,
+                isPresented: $isSearchPresented,
+                prompt: "ユーザー名を入力してください")
+            .keyboardType(.alphabet)
+            .autocorrectionDisabled()
+            .textInputAutocapitalization(.never)
+            .onSubmit(of: .search) {
+                Task {
                     await viewModel.fetchRepository()
-                })
-            )
+                    isSearchPresented = false
+                }
+            }
         }
         .alert(
             isPresented: $viewModel.needShowError,
@@ -76,27 +84,6 @@ struct ContentView: View {
             await viewModel.fetchRepository()
         }
     }
-}
-
-private struct RepositorySearch: ViewModifier {
-    
-    @Binding var query: String
-    let action: () async -> Void
-    
-    func body(content: Content) -> some View {
-        content.searchable(
-            text: $query,
-            prompt: "ユーザー名を入力してください")
-            .keyboardType(.alphabet)
-            .autocorrectionDisabled()
-            .textInputAutocapitalization(.never)
-            .onSubmit(of: .search) {
-                Task {
-                    await self.action()
-                }
-            }
-    }
-    
 }
 
 #Preview {
